@@ -1,23 +1,22 @@
 #include "lists.h"
 
 /**
- * check_cycle - check if a singly linked list has a cycle in it
- * @list: list to be checked
- * Return: 0 if no cycle, 1 if there is a cycle
+ * check_cycle - Checks if there is a loop in a linked list.
+ * @list: A pointer to the head of the linked list.
+ * Return: 0 if there is not a loop, 1 if there is a loop.
  */
 
 int check_cycle(listint_t *list)
 {
-listint_t *hare = list;
-listint_t *tortoise = list;
-if (list == NULL)
-return (0);
-while (tortoise && hare)
+listint_t *head;
+listint_t *tmp;
+head = list;
+tmp = list;
+while (tmp != NULL && head->next != NULL && head->next->next != NULL)
 {
-if (hare->next == NULL)
-return false;tortoise = tortoise->next;
-hare = hare->next->next;
-if (tortoise == hare)
+head = head->next->next;
+tmp = tmp->next;
+if (head == tmp)
 return (1);
 }
 return (0);
